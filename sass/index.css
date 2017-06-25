@@ -1,0 +1,479 @@
+@charset "UTF-8";
+/* 导入 字体文件 */
+@font-face {
+  font-family: 'wjsfont';
+  src: url("../fonts/MiFie-Web-Font.eot");
+  src: url("../fonts/MiFie-Web-Font.eot?#iefix") format("embedded-opentype"), url("../fonts/MiFie-Web-Font.woff") format("woff"), url("../fonts/MiFie-Web-Font.ttf") format("truetype"), url("../fonts/MiFie-Web-Font.svg") format("svg");
+}
+
+/* 定义 使用的class */
+.wjsfont {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'wjsfont';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.wjsfont-logo::before {
+  content: '\e920';
+}
+
+.wjsfont-name::before {
+  content: '\e921';
+}
+
+.wjsfont-e903::before {
+  content: '\e903';
+}
+
+.wjsfont-e901::before {
+  content: '\e901';
+}
+
+.wjsfont-e904::before {
+  content: '\e904';
+}
+
+.wjsfont-e905::before {
+  content: '\e905';
+}
+
+.wjsfont-e902::before {
+  content: '\e902';
+}
+
+/* 添加 产品列表的 文字样式 */
+.wjsfont-e915::before {
+  content: '\e915';
+}
+
+.wjsfont-new01::before {
+  content: "\e90e";
+}
+
+.wjsfont-new02::before {
+  content: "\e90f";
+}
+
+.wjsfont-new03::before {
+  content: "\e910";
+}
+
+.wjsfont-new04::before {
+  content: "\e911";
+}
+
+/* 网页 最下方的 合作单位 */
+.wjsfont-partner01::before {
+  content: "\e946";
+}
+
+.wjsfont-partner02::before {
+  content: "\e92f";
+}
+
+.wjsfont-partner03::before {
+  content: "\e92e";
+}
+
+.wjsfont-partner04::before {
+  content: "\e92a";
+}
+
+.wjsfont-partner05::before {
+  content: "\e929";
+}
+
+.wjsfont-partner06::before {
+  content: "\e931";
+}
+
+.wjsfont-partner07::before {
+  content: "\e92c";
+}
+
+.wjsfont-partner08::before {
+  content: "\e92b";
+}
+
+.wjsfont-partner09::before {
+  content: "\e92d";
+}
+
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+header .row > div:first-child a {
+  position: relative;
+}
+
+header .row > div:first-child a img {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  display: none;
+}
+
+header .row > div:first-child a:hover img {
+  display: block;
+}
+
+header .row > div {
+  border: 1px solid #000;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 12px;
+  color: gray;
+}
+
+header .row > div a {
+  padding-left: 10px;
+  color: gray;
+}
+
+header .row > div input {
+  width: 70px;
+  height: 30px;
+}
+
+#wjs-navbar {
+  border-bottom: none;
+  background-color: #f8f8f8;
+  height: 80px;
+  padding: 0 50px;
+  margin-bottom: 10px;
+}
+
+#wjs-navbar li a {
+  background-color: transparent;
+  color: #333;
+  height: 80px;
+  line-height: 80px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#wjs-navbar li a:hover {
+  border-bottom: 3px solid red;
+}
+
+#wjs-navbar .navbar-brand {
+  font-size: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+#wjs-navbar .navbar-brand span:first-child {
+  color: red;
+}
+
+#wjs-navbar .navbar-brand span:last-child {
+  color: black;
+}
+
+#wjs-navbar .navbar-toggle {
+  margin-top: 23px;
+}
+
+.carousel-inner .item a[class^="bg-pc"] {
+  height: 410px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.carousel-inner .item a.bg-pc-01 {
+  background-image: url("../images/slide_01_2000x410.jpg");
+}
+
+.carousel-inner .item a.bg-pc-02 {
+  background-image: url("../images/slide_02_2000x410.jpg");
+}
+
+.carousel-inner .item a.bg-pc-03 {
+  background-image: url("../images/slide_03_2000x410.jpg");
+}
+
+.carousel-inner .item a.bg-pc-04 {
+  background-image: url("../images/slide_04_2000x410.jpg");
+}
+
+.carousel-inner .item a {
+  display: block;
+  width: 100%;
+}
+
+.carousel-inner .item a img {
+  display: block;
+  width: 100%;
+}
+
+.wjs-protect .row {
+  padding: 40px 80px;
+}
+
+.wjs-protect .row > div {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.wjs-protect .row > div .media {
+  cursor: pointer;
+}
+
+.wjs-protect .row > div .media .media-body {
+  width: auto;
+}
+
+.wjs-protect .row > div .media a {
+  font-size: 40px;
+  color: gray;
+}
+
+.wjs-protect .row > div .media:hover {
+  color: red;
+  text-align: underline;
+}
+
+.wjs-protect .row > div .media:hover a {
+  color: red;
+}
+
+.book {
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  padding: 20px 150px;
+}
+
+.book a {
+  color: gray;
+}
+
+.book a:hover {
+  color: red;
+}
+
+.book .pull-left a {
+  color: red;
+  border-bottom: 1px dashed red;
+}
+
+#wjs-tickets .nav-tabs li.active a {
+  border-color: transparent;
+  border-bottom: 3px solid red;
+}
+
+#wjs-tickets .nav-tabs li a {
+  color: gray;
+}
+
+#wjs-tickets .nav-tabs li a:hover {
+  background-color: transparent;
+}
+
+#wjs-tickets .tab-content {
+  padding: 10px 20px;
+}
+
+#wjs-tickets .tab-content .row > div {
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content {
+  color: gray;
+  display: block;
+  height: 150px;
+  display: flex;
+  box-shadow: 5px 5px 15px black;
+  background-color: #fff;
+  text-decoration: none;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content .ticket-left {
+  text-align: center;
+  flex: 1;
+  height: 100%;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content .ticket-left h4 {
+  font-weight: normal;
+  padding-top: 5px;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content .ticket-left .left-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content .ticket-left .left-box p {
+  line-height: 24px;
+  font-weight: 900;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content .ticket-right {
+  width: 108px;
+  height: 100%;
+  position: relative;
+  border-left: 1px dashed gray;
+  padding-top: 20px;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content .ticket-right p {
+  text-align: center;
+  font-weight: 900;
+  line-height: 24px;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content .ticket-right::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-bottom: 1px solid gray;
+  border-radius: 50%;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: #fff;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content .ticket-right::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-top: 1px solid gray;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  background-color: #fff;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content.special {
+  color: #fff;
+  background-color: red;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content.special .ticket-right {
+  border-left-color: white;
+}
+
+#wjs-tickets .tab-content .row > div .ticket-content.special::before {
+  font-size: 40px;
+  position: absolute;
+}
+
+.wjs-news {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.wjs-news .row > div:nth-child(2) h3 {
+  margin: 0;
+  padding: 20px 0;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  position: relative;
+}
+
+.wjs-news .row > div:nth-child(2) h3::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  position: absolute;
+  right: -10px;
+  bottom: -5px;
+}
+
+.wjs-news .row > div:nth-child(3) {
+  position: relative;
+}
+
+.wjs-news .row > div:nth-child(3) .line {
+  height: 80%;
+  border-left: 1px dashed black;
+  position: absolute;
+  top: 30px;
+  left: 65px;
+}
+
+.wjs-news .row > div:nth-child(3) .nav-tabs li.active a {
+  background-color: red;
+  border-bottom: transparent;
+}
+
+.wjs-news .row > div:nth-child(3) .nav-tabs li {
+  padding-bottom: 60px;
+}
+
+.wjs-news .row > div:nth-child(3) .nav-tabs li a {
+  background-color: #ccc;
+  display: block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  color: white;
+  font-size: 40px;
+  line-height: 70px;
+  padding: 0;
+  text-align: center;
+}
+
+.wjs-news .row > div:nth-child(3) .nav-tabs li a:hover {
+  background-color: red;
+}
+
+.wjs-news .row > div:nth-child(4) .tab-content > div:nth-child(1) ul {
+  padding-top: 20px;
+}
+
+.wjs-news .row > div:nth-child(4) .tab-content > div:nth-child(1) ul li {
+  padding: 10px 0;
+}
+
+.wjs-news .row > div:nth-child(4) .tab-content > div:nth-child(1) ul li a {
+  color: gray;
+}
+
+footer {
+  text-align: center;
+  padding: 0 20px;
+}
+
+footer h4 {
+  text-align: center;
+}
+
+footer ul {
+  display: inline-block;
+}
+
+footer ul li {
+  float: left;
+  padding: 0 10px;
+}
+
+footer ul li a {
+  display: block;
+  font-size: 100px;
+  color: gray;
+}
+
+footer ul li a:hover {
+  color: gray;
+  text-decoration: none;
+}

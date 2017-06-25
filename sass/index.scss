@@ -1,0 +1,352 @@
+    @import "base.scss";
+    // header
+    header {
+        .row>div:first-child {
+            a {
+                position: relative;
+                img {
+                    position: absolute;
+                    top: 50px;
+                    left: 0;
+                    display: none;
+                }
+            }
+            a:hover img {
+                display: block;
+            }
+        }
+        .row>div {
+            border: 1px solid #000;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 12px;
+            color: gray;
+            a {
+                padding-left: 10px;
+                color: gray;
+            }
+            input {
+                width: 70px;
+                height: 30px;
+            }
+        }
+    }
+    
+    //导航条 
+    #wjs-navbar {
+        border-bottom: none;
+        background-color: #f8f8f8;
+        height: 80px;
+        padding: 0 50px;
+        margin-bottom: 10px;
+        li {
+            a {
+                background-color: transparent;
+                color: #333;
+                height: 80px;
+                line-height: 80px;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            a:hover {
+                border-bottom: 3px solid red;
+            }
+        }
+        .navbar-brand {
+            font-size: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            span:first-child {
+                color: red;
+            }
+            span:last-child {
+                color: black;
+            }
+        }
+        .navbar-toggle {
+            margin-top: 23px;
+        }
+    }
+    
+    // 轮播图
+    .carousel-inner {
+        .item {
+            a[class^="bg-pc"] {
+                height: 410px;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+            a.bg-pc-01 {
+                background-image: url("../images/slide_01_2000x410.jpg");
+            }
+            a.bg-pc-02 {
+                background-image: url("../images/slide_02_2000x410.jpg");
+            }
+            a.bg-pc-03 {
+                background-image: url("../images/slide_03_2000x410.jpg");
+            }
+            a.bg-pc-04 {
+                background-image: url("../images/slide_04_2000x410.jpg");
+            }
+            a {
+                display: block;
+                width: 100%;
+                img {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    
+    // 保障区域
+    .wjs-protect {
+        .row {
+            padding: 40px 80px;
+        }
+        .row>div {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            .media {
+                cursor: pointer;
+                .media-body {
+                    width: auto;
+                }
+                a {
+                    font-size: 40px;
+                    color: gray;
+                }
+            }
+            .media:hover {
+                color: red;
+                text-align: underline;
+                a {
+                    color: red;
+                }
+            }
+        }
+    }
+    
+    // 预约区域
+    .book {
+        border-bottom: 1px solid #000;
+        border-top: 1px solid #000;
+        padding: 20px 150px;
+        a {
+            color: gray;
+        }
+        a:hover {
+            color: red;
+        }
+        .pull-left {
+            a {
+                color: red;
+                border-bottom: 1px dashed red;
+            }
+        }
+        .pull-right {}
+    }
+    
+    //优惠券区域
+    #wjs-tickets {
+        .nav-tabs {
+            li.active {
+                a {
+                    border-color: transparent;
+                    border-bottom: 3px solid red;
+                }
+            }
+            li {
+                a {
+                    color: gray;
+                }
+                a:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+        .tab-content {
+            padding: 10px 20px;
+            .row>div {
+                padding: 10px 10px;
+                cursor: pointer;
+                .ticket-content {
+                    color: gray;
+                    display: block;
+                    height: 150px;
+                    display: flex;
+                    box-shadow: 5px 5px 15px black;
+                    background-color: #fff;
+                    text-decoration: none;
+                    .ticket-left {
+                        text-align: center;
+                        flex: 1;
+                        height: 100%;
+                        h4 {
+                            font-weight: normal;
+                            padding-top: 5px;
+                        }
+                        .left-box {
+                            display: flex;
+                            justify-content: space-between;
+                            padding: 0 10px;
+                            p {
+                                line-height: 24px;
+                                font-weight: 900;
+                            }
+                        }
+                    }
+                    .ticket-right {
+                        width: 108px;
+                        height: 100%;
+                        position: relative;
+                        border-left: 1px dashed gray;
+                        padding-top: 20px;
+                        p {
+                            text-align: center;
+                            font-weight: 900;
+                            line-height: 24px;
+                        }
+                        &::before {
+                            content: '';
+                            display: block;
+                            width: 20px;
+                            height: 20px;
+                            border-bottom: 1px solid gray;
+                            border-radius: 50%;
+                            position: absolute;
+                            top: -10px;
+                            left: -10px;
+                            background-color: #fff;
+                        }
+                        &::after {
+                            content: '';
+                            display: block;
+                            width: 20px;
+                            height: 20px;
+                            border-top: 1px solid gray;
+                            border-radius: 50%;
+                            position: absolute;
+                            bottom: -10px;
+                            left: -10px;
+                            background-color: #fff;
+                        }
+                    }
+                }
+                .ticket-content.special {
+                    color: #fff;
+                    background-color: red;
+                    .ticket-right {
+                        border-left-color: white;
+                    }
+                    &::before {
+                        font-size: 40px;
+                        position: absolute;
+                    }
+                }
+            }
+        }
+    }
+    
+    // 新闻区域
+    .wjs-news {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        .row>div:nth-child(2) {
+            h3 {
+                margin: 0;
+                padding: 20px 0;
+                text-align: center;
+                border-bottom: 1px solid #000;
+                position: relative;
+                &::before {
+                    content: '';
+                    width: 10px;
+                    height: 10px;
+                    border: 1px solid #000;
+                    border-radius: 50%;
+                    position: absolute;
+                    right: -10px;
+                    bottom: -5px;
+                }
+            }
+        }
+        .row>div:nth-child(3) {
+            position: relative;
+            .line {
+                height: 80%;
+                border-left: 1px dashed black;
+                position: absolute;
+                top: 30px;
+                left: 65px;
+            }
+            .nav-tabs {
+                li.active {
+                    a {
+                        background-color: red;
+                        border-bottom: transparent;
+                    }
+                }
+                li {
+                    padding-bottom: 60px;
+                    a {
+                        background-color: #ccc;
+                        display: block;
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 50%;
+                        color: white;
+                        font-size: 40px;
+                        line-height: 70px;
+                        padding: 0;
+                        text-align: center;
+                    }
+                    a:hover {
+                        background-color: red;
+                    }
+                }
+            }
+        }
+        .row>div:nth-child(4) {
+            .tab-content>div:nth-child(1) {
+                ul {
+                    padding-top: 20px;
+                    li {
+                        padding: 10px 0;
+                        a {
+                            color: gray;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // 底部
+    footer {
+        text-align: center;
+        padding: 0 20px;
+        h4 {
+            text-align: center;
+        }
+        ul {
+            display: inline-block;
+            li {
+                float: left;
+                padding: 0 10px;
+                a {
+                    display: block;
+                    font-size: 100px;
+                    color: gray;
+                }
+                a:hover {
+                    color: gray;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
