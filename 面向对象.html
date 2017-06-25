@@ -1,0 +1,206 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>itcastmark:C:\Users\lichengxiang\Desktop\MD\Knowledge\面向对象</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="js-">JS面向对象</h1>
+<h3 id="-">面向对象的特征</h3>
+<pre><code>    1.封装性
+        封装性就是把变量和函数集中在一起，放置到某个对象身上；
+    2.继承性
+        一个对象可以使用另外一个对象的属性和方法，就是继承性，可以达到节省内存，共享属性方法；
+    3.多态
+        任何时候都可改变对象的属性名；就是多态
+</code></pre><h3 id="-">原型</h3>
+<pre><code>    原型是一个对象，作用是让其他对象共享其属性方法，达到节省内存的目的
+函数都有一个默认的prototype属性，可以给他赋任何对象，构造函数的实例默认可以访问prototype里面的东西.
+
+    原型的作用：节省内存；
+</code></pre><h3 id="prototype-_proto_">prototype 和 <em>proto</em></h3>
+<pre><code>    每个函数都有prototype属性，每个对象都有__proto__属性；
+    函数比较特殊，既是函数又是对象，所以prototype与__proto__都有
+
+    prototype是从构造函数的角度获取原型的;
+    _proto_是从实例对象的角度获取原型的；
+
+    function Person(){}//一个匿名函数，构造函数
+    var fn = new Person() //构造函数的实例化
+    那么：
+        fn._proto_ === Person.prototype；
+        fn.constructor.prototype === Person.prototype;
+        fn.constructor === Person;
+        (通过构造函数的prototype获取原型全等于通过实例化函数的_proto_获取原型)
+</code></pre><h3 id="-">创建实例的四个步骤（构造函数的执行过程）</h3>
+<pre><code>    1.开辟内容空间，创建新对象;
+    2.添加一个隐藏属性，记录可使用的原型（_proto_）
+    3.执行构造函数,this指向新对象;
+    4.返回新对象的地址；
+</code></pre><h3 id="-">静态成员与实例成员</h3>
+<pre><code>    1.静态成员表示的是静态方法和静态属性的概念，所谓的静态，就是由构造函数所提供的；
+    2.实例成员，表示的是实例方法和实例属性，所谓的实例就是由构造函数所创建的对象；
+</code></pre><h3 id="-">类成员与实例成员</h3>
+<pre><code>    js中构造函数就是类；构造函数的属性和方法就是类成员；
+    类成员：供类使用的属性和方法；
+    实例成员：供实例成员使用的属性和方法；
+</code></pre><h3 id="-">面向对象的开发过程</h3>
+<pre><code>    1.先找内置的对象或别人写好的对象；
+    2.没有的话就自己造；
+    3.先写构造函数；
+    4.然后提取将来实例所需的属性写到构造函数中；
+    5.提取将来实例所需的方法写到构造函数prototype中；
+    6.创建实例调用方法解决实际问题；
+</code></pre><h3 id="ecma-">ECMA原型链规律</h3>
+<pre><code>    1.实例是什么类型，就先继承什么的prototype;
+    2.构造函数的默认prototype对象自己,继承Object.prototype;
+
+        ## Math/Json对象的方法都定义在自身，不定义在prototype;
+</code></pre><h3 id="hasownproperty-">hasOwnProperty()方法</h3>
+<pre><code>    hasOwnPrototype()方法可以检测一个属性是存在于实例中还是存在于原型;如果存在于自身，则会返回turn,如果存在于原型中,则会返回false;
+
+语法： Obj.hasOwnProperty(&#39;属性名&#39;);// 返回一个boolean值；
+
+    var obj = {this.name:&#39;sandy&#39;,this.age:&#39;22&#39;};
+    obj.hasOwnProperty(&#39;name&#39;)//true;
+    obj.hasOwnProperty(&#39;toString&#39;)//false;
+</code></pre><h3 id="in-">in 运算符</h3>
+<pre><code>    in 运算符；作用：检测对象是否可以使用某属性；
+语法： 属性名 in obj;   //返回一个boolean值；
+
+    注意：与hasOwnPrototype()方法的区别，in 是检测对象是否可以使用某属性，无论该属性存在于原型还是存在于自身中;
+         hasOwnProperty()只能检测自身时候含有某属性；
+</code></pre><h3 id="instanceof">instanceof</h3>
+<pre><code>    作用：判断对象的原型链中是否含有某构造函数的prototype;//返回的也是一个boolean值；
+
+    注意： instanceof 与in 运算符 hasOwnProperty() 的区别是，instanceof 判断的是对象是否含有构造函数的prototype，判断对象是是否继承了原型链prototype; 
+        in 运算符是判断对象是否可以使用某属性，判断的时候属性,只要有该属性存在，无论存在于构造函数中还是存在于原型中，返回的结果都是ture; 
+        hasOwnProperty也是判断的是对象是否含有某属性,判断的对象是属性，如果该属性存在于prototype中，hasOwnProperty判断为false;
+</code></pre><h3 id="extend-">extend()</h3>
+<pre><code>    通过extend方法可以给对象添加另一个对象的原型方法；
+
+    例： function Animal(){}; Animal.prototype.eat = function(){console.log(&#39;吃&#39;)};
+        function Person(){}//Person与Animal都有一些公共的方法属性，那么可以将Animal的方法通过拷贝的
+    方式拷贝给Person;
+
+    extend的作用就是可以给一个对象方法添加另一个对象方法或属性;
+    语法:$.extend(Person,Animal.property...);//extend是jQuery封装的方法，使用的时候需要引入jQuery包；
+
+    extend()方法中，如果只有一个参数，就是jQuery插件的扩展: $.fn.extend({name:function(){});
+                   如果传多个参数，就是将后面对象的属性方法copy给第一个对象；
+</code></pre><h3 id="-">生命周期</h3>
+<pre><code>    从变量定义开始到变量消亡结束的时间；
+    局部变量生命周期：函数执行到函数执行结束；
+</code></pre><h3 id="-">语法作用域</h3>
+<pre><code>定义：查找变量，先在当前作用域内查找，当前作用域中没有找到，到该函数的作用域中查找，以此类推！
+
+
+函数调用一次，就产生一个局部作用域；
+</code></pre><h3 id="call-apply-">call和apply方法</h3>
+<pre><code>    函数中，this的特点是调用方式不同，this指向不同;
+    call和apply，是函数的方法，他们的作用都是一样，就是能够改变函数内this的指向；
+
+1.call
+    语法：fn.call(new this object,参数1,参数2...);
+    参数是传递给函数的实参；
+
+2.apply
+    语法：fn.applay(new this object,[参数1，参数2...])；
+    第二个参数是个伪数组，里面放传递给函数的实参；
+</code></pre><blockquote>
+<p>使用语法：谁的方法借给谁用； [ ].push.call(obj);/Array.propotype.push.call(obj);</p>
+</blockquote>
+<pre><code>    常用的是判断对象的类型：Object.prototype.toString.call(obj);
+</code></pre><h3 id="function-eval-">Function()&amp;&amp;eval()</h3>
+<ul>
+<li><p>Function </p>
+<p>  语法：new Function(形参1，形参2，... ，代码体);
+  代码体是字符串。</p>
+</li>
+<li><p>eval()</p>
+<p>  语法：eval(代码体)
+  代码体是字符串。</p>
+</li>
+</ul>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
