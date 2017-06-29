@@ -883,7 +883,7 @@ var JD = $.noConflict()//将$符号让出来，有一个返回之后，使用这
 <blockquote>
 <p>$.fn.jQuery可以检测当前的版本，也就是利用该方法检测当前$是属于哪个库的；</p>
 </blockquote>
-<h1 id="h5c3">H5C3</h1>
+<h1 id="3-h5c3">3.H5C3</h1>
 <h2 id="h5">H5</h2>
 <pre><code>    低版本的浏览器对HTML5新增的标签是不认识的,默认是不存在;为使得低版本的浏览器对新增的标签兼容，有两种方法：
     1.    使用动态创建元素的方法创建新增的标签，但是创建出来的元素默认是个行内元素；
@@ -1136,6 +1136,522 @@ transitionend; 一般当做节流阀用；
 <li>both</li>
 </ul>
 </li>
+</ul>
+<h3 id="-">弹性布局</h3>
+<blockquote>
+<p>display:flex;</p>
+</blockquote>
+<p>当给一个盒子设置了display：flex之后，这个盒子就有了<strong>主轴 </strong>和<strong>侧轴</strong> 的概念。 主轴：Flex容器的主轴主要用来配置Flex项目，默认是水平方向 侧轴：与主轴垂直的轴称作侧轴，默认是垂直方向的 方向：默认<strong>主轴从左向右</strong> ，默认<strong>侧轴从上到下</strong></p>
+<p><img src="display-flex.png" alt=""></p>
+<ul>
+<li><p>flex-direction (调整主侧轴)</p>
+<pre><code>  flex-direction 可以调整主侧轴方向
+</code></pre><ul>
+<li>row：主轴方向为水平向右</li>
+<li>column：主轴方向为竖直向下</li>
+<li>row-reverse:主轴方向为水平向左</li>
+<li>column-reverse:主轴方向是竖直向上。</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">全屏事件</h3>
+<p>requestFullScreen();//有很强的兼容性，使用时要加前缀兼容；</p>
+<p>如：
+video.webkitRequestFullScreen(); </p>
+<h3 id="-">拖拽事件（文件上传）</h3>
+<h4 id="-">读取文件</h4>
+<pre><code>         input.addEventListener(&quot;change&quot;,function(){
+            // 1. 获取文件，文件存放于files属性中,是个伪数组，使用下标获取文件
+            var file = this.files[0]
+            // 2. 创建一个文件读取对象，文件读取工具
+            var fr = new FileReader();
+            // 3. 将文件进行读取
+            fr.readAsDataURL(file);
+            // 4. 文件读取文件之后的操作
+            fr.onload = function(){
+                // 处理文件的代码
+                fr.result//读取后返回的结果
+            }
+        });
+</code></pre><h4 id="-">拖拽</h4>
+<ul>
+<li><p>事件</p>
+<pre><code>  (自身事件)
+</code></pre><ul>
+<li>dragstart //  拖拽开始时触发的事件</li>
+<li>dragend //  拖拽结束触发</li>
+<li><p>drag // 只要在拖拽状态就会触发</p>
+<p>  (目标事件)</p>
+</li>
+<li>dragover // 拖拽元素在目标元素上停留的状态</li>
+<li>drop // 给目标元素添加拖拽的元素事件</li>
+</ul>
+</li>
+<li><p>状态</p>
+<pre><code>  draggable = true;使元素具有拖拽效果；
+</code></pre></li>
+</ul>
+<h4 id="-">拖拽并读取文件</h4>
+<pre><code>    //1.阻止事件默认行为
+    box.addEventListener(&quot;dragover&quot;,function(e){
+        e.preventDefault();
+    });
+    //2.文件读取
+    box.addEventListener(&quot;drop&quot;,function(e){
+        //2.1 阻止事件默认
+        e.preventDefault();
+        //2.2 获取文件，鼠标拽入的时候  通过鼠标目标对象获取事件  dataTransfer对象数据转让
+        var file = e.dataTransfer.files[0];
+        //2.3 创建一个文件读取对象
+        var fr = new FileReader();
+        //2.4 读取文件
+        fr.readAsDataURL(file);
+        //2.5 文件读取完毕之后的操作
+        fr.onload = function(){
+            fr.result//读取完毕之后返回的结果数据;
+        }
+    })
+</code></pre><h3 id="-">储存</h3>
+<ul>
+<li><p>cookie</p>
+<pre><code>  （1）设置保存cookie
+  //储存
+  document.cookie = value;
+  //获取
+  var cookie = document.cookie;
+
+  以上都是基于会话机制的，也就是关闭浏览器就丢失；
+  （2）方法二
+  // 设置cookie并设置存储时间
+  document.cookie = &quot;userAge=18;expires=&quot;+new Date()
+</code></pre></li>
+</ul>
+<blockquote>
+<p>特点： 默认储存7天，储存大小只有4K；</p>
+</blockquote>
+<ul>
+<li><p>sessionstorage</p>
+<pre><code>  //储存
+  sessionstorage.setItem(key,value);
+  //获取
+  sessionstorage.getItem(key);
+  //删除    
+  sessionstorage.removeItem(key);
+</code></pre><blockquote>
+<p>特点：1.不能再多个窗口下共享数据（浏览器关闭就会被删除）；2.储存大小为5M；</p>
+</blockquote>
+</li>
+<li><p>localstorage</p>
+<pre><code>  //储存
+  localstorage.setItem(key,value);
+  //获取
+  localstorage.getItem(key);
+  //删除
+  localstorage.removeItem(key);
+</code></pre><blockquote>
+<p>特点：1.永久生效，除非手动删除；2.可以多个窗口共享；3.储存大小为20M；</p>
+</blockquote>
+</li>
+<li><p>jquery.cookie</p>
+</li>
+</ul>
+<p>jquery.cookie插件可以更加方便有效的对想要储存的数据进行储存；</p>
+<pre><code>    基本用法：$.cookie(key,value);
+    设置有效期的cookie: $.cookie(key,value,{expires:value})//value代表需要储存的天数；
+
+    移除cookie:  $.removeCookie(key);
+</code></pre><h3 id="-">网络状态</h3>
+<blockquote>
+<p>在移动端，经常需要检测设置是在线还是离线，HTML5定义了一个navigator.onLine属性，这个属性用于检测设备是否联网。
+navigator.onLine在不同浏览器中有细微的差别。</p>
+</blockquote>
+<h4 id="-">网络状态</h4>
+<pre><code>    navigator.onLine返回用户当前的网络状况，是一个布尔值
+    1.如果浏览器连不上网（包括局域网）,就是离线状态，返回false
+    2.在线状态返回true;
+</code></pre><h4 id="-">监听网络变化事件</h4>
+<ul>
+<li><p>offline</p>
+<pre><code>  window.addEventListener(&quot;offline&quot;,function(){
+      //网络断开时调用的事件
+  });
+</code></pre></li>
+<li><p>online</p>
+<pre><code>  window.addEventListener(&#39;online&#39;,function(){
+      //网络链接是被调用的代码    
+  })
+</code></pre></li>
+</ul>
+<h3 id="-">地理位置</h3>
+<blockquote>
+<p>在HTML规范中，增加了获取用户地理信息的API,这样使得我们可以基于用户位置开发互联网应用，即基于位置服务
+LBS（Location Base Service）</p>
+</blockquote>
+<h4 id="-">基本用法</h4>
+<pre><code>    //获取当前的地理位置
+    navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+    //实时获取位置
+    navigator.geolocation.watchPostion(successCallback,errorCallback);
+</code></pre><p>实例：</p>
+<pre><code>    navigator.geolocation.getCurrentPosition(function(position){
+            position.coords.latitude //纬度
+            position.coords.longitude // 经度
+            position.coords.accuracy // 经度
+            position.coords.altitude // 海拔高度
+        },function(){
+            定位失败后执行的代码
+        });
+</code></pre><h2 id="web-">web开发</h2>
+<pre><code>    视口属性：
+    &lt;meta name=&quot;viewport&quot; content=&quot;width = device-width,user-scaleable = no,
+    initial-scale = 1.0,maximum-scale=1.0,minimum-scale=1.0&quot;&gt;
+</code></pre><h3 id="zepto-js-jquery-">zepto.js (类似jquery)</h3>
+<pre><code>    Zepto是一个轻量级的针对现代高级浏览器的JavaScript库， 它与jquery有着类似的api。 如果你会用jquery，那么你也会用zepto。
+</code></pre><p><img src="zepto.png" alt=""></p>
+<pre><code>    需要什么功能操作就导入对应的包名称；与PC端相比，zepto增加了touch模块，可用于移动端触摸点击；
+</code></pre><h3 id="bootstrap-">bootstrap (框架)</h3>
+<p>Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架，用于开发响应式布局、移动设备优先的 WEB 项目；</p>
+<h4 id="-">栅格系统</h4>
+<ul>
+<li><p>基本布局</p>
+<pre><code>  &lt;div class=&quot;container-fluid&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+              &lt;div class=&quot;col-md-1&quot;&gt;.col-md-1&lt;/div&gt;
+           &lt;div class=&quot;col-md-1&quot;&gt;.col-md-1&lt;/div&gt;
+        &lt;/div&gt;
+  &lt;/div&gt;
+</code></pre></li>
+<li><p>布局选项</p>
+</li>
+</ul>
+<p><img src="栅格可见类.png" alt=""></p>
+<h3 id="swiper-">Swiper (插件)</h3>
+<p>Swiper是纯javascript打造的滑动特效插件，面向手机、平板电脑等移动终端;
+Swiper能实现触屏焦点图、触屏Tab切换、触屏多图切换等常用效果。
+Swiper开源、免费、稳定、使用简单、功能强大，是架构移动终端网站的重要选择！</p>
+<hr>
+<pre><code>    使用步骤
+    1.加载插件，需要用到的文件有swiper.min.js和swiper.min.css文件；
+    2.HTML内容：
+        &lt;div class=&quot;swiper-container&quot;&gt;
+               &lt;div class=&quot;swiper-wrapper&quot;&gt;
+                &lt;div class=&quot;swiper-slide&quot;&gt;Slide 1&lt;/div&gt;
+                 &lt;div class=&quot;swiper-slide&quot;&gt;Slide 2&lt;/div&gt;
+                 &lt;div class=&quot;swiper-slide&quot;&gt;Slide 3&lt;/div&gt;
+               &lt;/div&gt;
+                    &lt;!-- 如果需要分页器 --&gt;
+                &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+
+                       &lt;!-- 如果需要导航按钮 --&gt;
+                &lt;div class=&quot;swiper-button-prev&quot;&gt;&lt;/div&gt;
+                &lt;div class=&quot;swiper-button-next&quot;&gt;&lt;/div&gt;
+
+                       &lt;!-- 如果需要滚动条 --&gt;
+                &lt;div class=&quot;swiper-scrollbar&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    3.script 内容
+        var mySwiper = new Swiper (&#39;.swiper-container&#39;, {
+                direction: &#39;vertical&#39;,//设置滚屏的方向
+                loop: true,//设置可否循环滚动
+
+                // 如果需要分页器
+                pagination: &#39;.swiper-pagination&#39;,
+
+                // 如果需要前进后退按钮
+                nextButton: &#39;.swiper-button-next&#39;,
+                prevButton: &#39;.swiper-button-prev&#39;,
+
+                // 如果需要滚动条
+                scrollbar: &#39;.swiper-scrollbar&#39;,
+              })        
+</code></pre><ul>
+<li><p>tap高亮效果</p>
+<pre><code>  -webkit-tap-highlight-color:
+</code></pre></li>
+</ul>
+<h3 id="rem">rem</h3>
+<pre><code>    使用rem的步骤：
+    1.将设计图等分为N等分，计算1rem的单位
+    2.设置html的font-size
+        &lt;script&gt;
+            //页面打开的时候设置html的字体大小,html的字体大小影响到rem的数值
+            document.querySeletor(&#39;html&#39;).style.fontSize = window.screen.widht/N + ‘px’;
+            window.onresize = function(){
+            document.querySeletor(&#39;html&#39;).style.fontSize = window.screen.widht/N + ‘px’;
+            }
+        &lt;/script&gt;
+</code></pre><h3 id="sass-">sass基本使用</h3>
+<ul>
+<li><p>@import 导入其他scss文件</p>
+<pre><code>  @import &#39;normalize.scss&#39;;
+</code></pre></li>
+<li><p>变量的定义</p>
+<pre><code>  $JDR:rgb(201, 21, 35);
+
+  调用：background-color:$JDR;
+</code></pre></li>
+<li><p>函数的定义</p>
+<pre><code>  $function size($size){
+      $return ($size/32)*1rem;
+  }
+
+  调用：font-size:size(22px);
+</code></pre></li>
+<li><p>混入定义</p>
+<pre><code>  混入定义类似js中的函数，可以代用一次输出多行代码；
+
+  定义：
+  @mixin measure($width,$height){
+      width:size($width);
+      height:size($height);
+  }
+
+  调用：
+  @include measure(300,200);
+</code></pre></li>
+</ul>
+<h1 id="ajax">Ajax</h1>
+<h2 id="php-">php基础</h2>
+<p>php是服务端语言，与javascript语法高度类似</p>
+<h3 id="-">入门</h3>
+<p>php文件以php结尾，所有的代码都包含在&lt;?php  代码段  ?&gt;</p>
+<pre><code>    &lt;?php
+        echo &#39;hello world!&#39; // echo 是输出内容的方式
+    ?&gt;
+</code></pre><h3 id="-">变量</h3>
+<p>1、变量以$开头 字母/数字/下划线 不能以数字开头</p>
+<p>2、区分大小写</p>
+<h3 id="-">内容输出</h3>
+<ul>
+<li>echo:  输出简单的数据类型，如字符串、数值</li>
+<li>var_dump();    输出详细信息，如对象，数组；</li>
+</ul>
+<h3 id="-">拼接字符串</h3>
+<p>在php中，使用&#39;.&#39;号来链接字符串，类似javascrip中的&#39;+&#39;用于字符串的拼接；</p>
+<pre><code>    //php
+        echo &#39;我是：&#39;.$name.&#39;年龄：&#39;.$sex;
+    //javascript
+        alert(&#39;我是：&#39;+ name +&#39;年龄：&#39;+sex;)
+</code></pre><h3 id="-">数组</h3>
+<ul>
+<li><p>普通类型数组</p>
+<pre><code>  // php中的普通类型的数组定义；
+      $student = array(&#39;rose&#39;,&#39;jack&#39;,&#39;roman&#39;,&#39;piter&#39;);
+  //调用数组跟javascript类似，通过数组的下标来调用
+      echo $student[1] // jack
+</code></pre></li>
+<li><p>关系型数组(类似javascript的对象)</p>
+</li>
+</ul>
+<blockquote>
+<p>在php中,数组的长度的方法是使用count()方法;注意与javascript中数组长度lenght区分
+count($arr);//数组名称放于方法内</p>
+</blockquote>
+<p>php中的关系型数组定义,是键值对关系，键值对使用=&gt;来进行赋值</p>
+<pre><code>    $person = array(&quot;name&quot;=&gt;&quot;sandy&quot;,&quot;age&quot;=&gt;&quot;22&quot;);
+        echo $person[&#39;name&#39;] // sandy
+</code></pre><h3 id="-">声明编码</h3>
+<pre><code>    &lt;?php
+        header(&#39;content-type:text/html;charset=utf-8&#39;);
+        //声明编码，告诉服务器文件的编码类型，类似于html文件中的 &lt;meta charset=&quot;UTF-8&quot;&gt;
+    ?&gt;
+</code></pre><h2 id="ajax-">AJAX请求</h2>
+<h3 id="-">数据提交方式</h3>
+<h4 id="get">get</h4>
+<p>get方式提交数据，一般数据在URL中进行拼接，数据以键值对的关系进行上传;用户可以看见</p>
+<blockquote>
+<p>get方式提交数据，在服务器中，以php语言为例，获取提交数据的方式是：$_GET
+$_GET获取的是一个关系型数组，可以通过属性对应的属性值；</p>
+<h4 id="post">post</h4>
+</blockquote>
+<p>post方式提交数据，用户看不到数据，暗文；</p>
+<blockquote>
+<p>post方式提交数据，类似隔天，在服务器中，php获取的方式是：$_GET</p>
+<h4 id="form">form</h4>
+</blockquote>
+<p>form表单提交数据的方式，必须填写结果属性：</p>
+<ol>
+<li>action= &quot;请求地址/php路径&quot;;</li>
+<li>method = &quot;get/post&quot;;</li>
+<li><p>input标签中，要设置name属性</p>
+<pre><code> &lt;form action=&quot;&quot; method=&quot;get/post&quot;&gt;
+     &lt;input type=&#39;text&#39; name=&#39;username&#39;/&gt;
+     &lt;input type=&#39;submit&#39; value=&#39;提交&#39;&gt;
+ &lt;/form&gt;
+</code></pre></li>
+</ol>
+<h4 id="form-">form表单文件上传</h4>
+<p>表单中上传文件 必须使用<strong>POST</strong>上传，且要添加一个规定在将表单数据发送到服务器之前如何对其进行编码 <strong>enctype=&#39;multipart/form-data&#39;</strong></p>
+<pre><code>    &lt;form action=&#39;&#39; method=&#39;post&#39;  entype=&#39;multipart/form-data&#39;&gt;
+        &lt;input type=&#39;file&#39; name=&#39;img&#39;/&gt;
+        &lt;input type=&#39;submit&#39; value=&#39;提交&#39;&gt;
+    &lt;/form&gt;
+</code></pre><blockquote>
+<p>在服务器中，php获取上传的文件通过 $_FILES 获取,类似$_GET/$_POST,获取的结果是个关系型数组；
+通过 move_uploaded_file(),方法对获取的文件进行保存处理；</p>
+</blockquote>
+<h4 id="ajax-">ajax请求</h4>
+<ul>
+<li><p>请求报文</p>
+<ul>
+<li>请求的方法（请求行）</li>
+<li>浏览器的信息（请求头）</li>
+<li>发送的数据（请求报文）</li>
+</ul>
+</li>
+<li><p>相应报文</p>
+<ul>
+<li>请求是否成功（状态行）</li>
+<li>服务器的信息（相应头）</li>
+<li>主要的内容（相应主体）</li>
+</ul>
+</li>
+</ul>
+<h3 id="ajax-">ajax请求</h3>
+<p>ajax请求，通过异步对象进行请求，主要的步骤：</p>
+<ol>
+<li><p>声明一个异步请求对象</p>
+<pre><code> var xhr = new XMLHttpRequest()
+</code></pre></li>
+<li><p>声明请求的方式</p>
+<pre><code> xhr.open(&#39;get/posh&#39;,服务器地址);
+</code></pre></li>
+<li><p>设置请求头</p>
+<pre><code> xhr.setRequestHeader(&quot;content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+</code></pre></li>
+<li><p>设置请求主体</p>
+<pre><code> xhr.send(null);
+</code></pre></li>
+<li><p>回调函数</p>
+<pre><code> xhr.onload = function(){ 
+     xhr.responseText
+     }
+</code></pre></li>
+</ol>
+<h4 id="get-">get请求</h4>
+<pre><code>    1.创建对象
+        var xhr = new XMLHttpRequest();
+    2.设置请求方式，请求url
+    （get方式请求数据，数据以键值对的关系拼接在url地址后面）
+        xhr.open(&quot;get&quot;,&quot;url&quot;+data);
+    3.设置请求头        
+    //get请求，请求头可以省略
+        xhr.setResponHeader();
+    4.回调函数，相应报文回来后要指向的代码
+        xhr.onload = function(){
+            xhr.responseText;
+        }        
+    5.请求主体
+        xhr.send(null);
+</code></pre><h4 id="post-">post请求</h4>
+<pre><code>    1.创建对象
+        var xhr = new XMLRequest();
+    2.设置请求方式，请求url
+        xhr.open(&quot;post&quot;,&quot;url&quot;);
+    3.设置请求头
+        xhr.setRequestHeader(&quot;conten-type&quot;,&quot;application/x-www-form-urlencoded&quot;);
+    4.回调函数，相应报文回来后要执行的代码
+        xhr.onload = function(){
+            xhr.responseText;
+        }
+    5.设置相应主体
+        xhr.send(data);//post请求需要发送的数据放在send()里面，以键值对的关系；
+</code></pre><h4 id="onload-onreadystatechange">onload与onreadystatechange</h4>
+<p>AJAX请求中的回调函数，有两个写法，onload/onreadeystatechage,onload在较低版本的浏览器中可能存在兼容性的问题，而onreadystatechange在所有浏览器中都支持，所以对AJAX封装的时候使用onreadystatechange;</p>
+<p>onreadystatechange--状态改变触发的事件，</p>
+<pre><code>    AJAX请求的状态(readyStage)：
+    0 --&gt; UNSEND(未打开) open()方法未被调用；
+    1 --&gt; OPENED(未发送) send()方法未被调用;
+    2 --&gt; HEADERS_RECEIVED (已获取响应头) send()方法已经被调用, 响应头和响应状态已经返回;
+    3 --&gt; LOADING (正在下载响应体)  响应体下载中; responseText中已经获取了部分数据;
+    4 --&gt; DONE (请求完成) 整个请求过程已经完毕;
+
+    页面请求的状态(status):
+    200 --&gt; 页面请求成功；
+    404 --&gt; 页面不存在发生错误;
+
+    因为使用onreadystatechange会触发多个状态下的事件，所以在使用的时候需要进行判断
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 &amp;&amp; xhr.status == 200){ xhr.responseText; }
+        }
+</code></pre><h3 id="-">传输数据类型</h3>
+<h4 id="xml">XML</h4>
+<p>xml文件数据，类似html文件，是一个双标签文件，标签之间放数据；xx.xml;</p>
+<pre><code>    XML传输数据的准备：
+    - 服务器php中
+        &lt;?php
+            //1.告诉服务器返回的数据类型
+            header(&quot;content-type:text/xml;charset=utf-8&quot;);
+            //2.读取文件并返回
+            $data = file_get_contents(&#39;文件路径文件名&#39;);
+            //3.将数据返回
+            echo $data;
+        ?&gt;
+
+    - 客户端html文件中
+        html文件中获取服务器返回的xml数据类型并解析
+        xhr.onload = function(){
+            //xml数据文件，使用xhr.responseXML获取
+            var result = xhr.responseXML//获取到的是xml文件的document对象，类似html文件的document对象；
+            //读取xml文件中的数据
+            result.querySelector(&#39;&#39;).innerHTML;
+            //result是xml文件的ducment对象，所以类似html文件通过选择器获取标签间的数据；
+        }
+</code></pre><h4 id="json">JSON</h4>
+<p>json是一种特殊格式的字符串，用于传输数据;</p>
+<pre><code>    json传输数据的准备
+    - 服务器中php文件中
+    &lt;?php
+        //1.告诉服务器传输的是什么格式的数据文件
+        header(&quot;content-type:application/json;charset=uft-8&quot;);
+        //2.解析文件
+        $data = file_get_contents(&#39;文件路径/文件名&#39;);
+        //3.返回数据
+        echo $data;
+    ?&gt;    
+
+    - 客户端html文件中
+        获取服务器传回的数据并解析
+        xhr.onload=function(){
+            var result = xhr.responseText;
+            //获取到的json数据仍是一个字符串格式的数据，需要对json字符串进行转义
+            var data = JSON.parse(result);
+            //在js中，对象转字符串的方式：JSON.stringify();
+            //字符串转对象的方法:JSON.parse();
+        }
+</code></pre><h3 id="jsonp-">JsonP接口</h3>
+<p>浏览器安全策略：不同源的页面之间默认是不允许发送请求的；
+什么是同源呢？
+        协议名，地址，端口都一致的地址就是同源；</p>
+<p>那么不同源真的不可以访问吗？答案是可以的，只要在访问的服务器中设置一个允许访问的设置即可！这个技术称为CORS技术；
+        &lt;?php
+            header(&quot;Access-contorl-Allow-Origin:*&quot;);
+            //设置允许不同源页面访问
+        ?&gt;</p>
+<p><strong>对于JsonP接口的请求方式</strong>:</p>
+<ul>
+<li><p>Ajax</p>
+<p>  对于JsonP接口数据请求，在Ajax请求中需要设置dataType，告诉浏览请求的接口</p>
+<pre><code>  $.ajax({
+      ulr:&#39;&#39;,
+      data:data,
+      dataType:&#39;jsonp&#39;,//让jquery内部自动创建一个script标签并设置src属性；
+      success:function(){}
+  });
+</code></pre></li>
+<li><p>Dom元素的src属性请求</p>
+<p>  img或其他标签元素，如果有src属性，通过src属性指定不同源素材，是可以获取到不同源的数据，且实质是发送一个get请求；JsonP就是利用元素的src属性，来支持跨域访问实现数据获取的！</p>
+<pre><code>  //通过Dom元素的src属性向不同源的服务器请求数据
+  &lt;script src=&quot;请求的不同源的服务器地址&quot;&gt;&lt;/script&gt;
+  //实质是发送一个get请求，所以，数据可以在地址栏中进行拼接
+  &lt;script src=&quot;https//:xxx.com/?name=jaks&amp;age=16&quot;&gt;
+
+  在服务器中通过echo返回要处理的数据程序
+  &lt;script&gt;
+      function Dodata(data){console.log(data)};//定义要处理数据的函数
+  &lt;/script&gt;
+  &lt;script src=&quot;https//:xxx.com/?name=jaks&amp;age=16&amp;callback=Dodata&quot;&gt;//通过callback拼接，向服务器发送处理返回数据的函数代码；
+</code></pre></li>
 </ul>
 
           	</article>
